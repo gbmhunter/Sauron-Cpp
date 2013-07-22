@@ -1,8 +1,8 @@
 //!
-//! @file 		Sauron-Port.cpp
+//! @file 		Sauron-FreeRtosMetrics.cpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com> 
 //! @date 		2012/03/19
-//! @brief 		Contains port-specific skeleton functions.
+//! @brief 		Calls FreeRTOS API that returns performance metrics about the operating system.
 //! @details
 //!				See README.rst in root dir for more info.
 
@@ -14,16 +14,12 @@
 //========================================= INCLUDES ============================================//
 //===============================================================================================//
 
-// System includes
-#include <stdio.h>		// snprintf()
-
 // User includes
-#include "./include/Sauron-Port.h"
+#include "./include/Sauron-Config.h"
 
-#if(CY_PSOC5)
-	#include "./Comms/include/UartDebug.h"
-	#include "./Comms/include/UartComms.h"
-#endif
+#if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
+
+#include "./include/Sauron-Port.h"
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//
@@ -31,48 +27,44 @@
 
 namespace Sauron
 {
+	
+	char FreeRtosMetrics::taskMetricsStringBuff[200] = {0};
+	char FreeRtosMetrics::freeHeapSpaceString[100] = {0};
 
 	//===============================================================================================//
-	//===================================== PUBLIC FUNCTIONS ========================================//
+	//================================ PUBLIC METHOD DECLARATIONS ===================================//
 	//===============================================================================================//
 
-	void Port::DebugPrint(const char* msg) 
+	void FreeRtosMetrics::Run()
 	{
-		#ifdef __linux__
-			printf("%s", msg);
-		#elif(CY_PSOC5)
-			UartDebugNs::UartDebug::PutString(msg);
-		#else
-			#warning No debug output defined
+		// Print performance metrics
+		#if(Sauron_Config_DEBUG_PRINT_GENERAL == 1)
+			Port::DebugPrint("SAURON: Gathering/printing FreeRTOS metrics...\r\n");
 		#endif
+
+		// Get task information
+		vTaskList((signed char*)taskMetricsStringBuff);
+		
+		snprintf(
+			freeHeapSpaceString,
+			50,
+			"\r\nTick = %u\r\nFree Heap Space = %u\r\n\r\n",
+			(uint32) xTaskGetTickCount(),
+			(uint32) xPortGetFreeHeapSize());
+		
+		strlcat(taskMetricsStringBuff, freeHeapSpaceString, sizeof(taskMetricsStringBuff));
+		// Print task information
+		
+		Port::DebugPrint(taskMetricsStringBuff);
 	}
 	
-	void Port::SetGpio()
-	{
-		#ifdef __linux__
-			// Nothing
-		#elif(CY_PSOC5)
-			PinCpDebugLed2_Write(0);
-		#else
-			#warning No GPIO output defined
-		#endif 
-	}
-	
-	void Port::ClearGpio()
-	{
-		#ifdef __linux__
-			// Nothing
-		#elif(CY_PSOC5)
-			PinCpDebugLed2_Write(1);
-		#else
-			#warning No GPIO output defined
-		#endif 
-	}
-
 	//===============================================================================================//
-	//==================================== PRIVATE FUNCTIONS ========================================//
+	//=============================== PRIVATE METHOD DECLARATIONS ===================================//
 	//===============================================================================================//
 
-	// none
 
 } // namespace Sauron
+
+#endif // Sauron_Config_ENABLE_FREERTOS_METRICS
+
+// EOF

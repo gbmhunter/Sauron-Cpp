@@ -1,5 +1,5 @@
 //!
-//! @file 		Sauron-IncludeJustMe.h
+//! @file 		Sauron-IncludeJustMe.hpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
 //! @date 		2013/07/18
 //! @brief 		This header file includes all files neccessary for the user to use the Sauron library.
@@ -17,7 +17,8 @@
 #ifndef SAURON_INCLUDE_JUST_ME_H
 #define SAURON_INCLUDE_JUST_ME_H
 
-#include "Sauron-Tester.h"
+#include "Sauron-Tester.hpp"
+#include "Sauron-Runner.hpp"
 
 #endif	// SAURON_INCLUDE_JUST_ME_H
 

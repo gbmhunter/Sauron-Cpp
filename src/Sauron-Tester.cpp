@@ -1,5 +1,5 @@
 //!
-//! @file 		Sauron-Tester.c
+//! @file 		Sauron-Tester.cpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com>
 //! @date 		2013/07/18
 //! @brief 		
@@ -43,7 +43,7 @@ namespace Sauron
 	char Tester::debugBuff[Sauron_Config_DEBUG_BUFF_SIZE] = {0};
 
 	//===============================================================================================//
-	//======================================= PUBLIC METHODS ========================================//
+	//================================== PUBLIC METHOD DEFINITIONS ==================================//
 	//===============================================================================================//
 
 	Tester::Tester()
@@ -51,53 +51,8 @@ namespace Sauron
 		
 	}
 	
-	bool Tester::LessThan(double val, double limit)
-	{
-		if(val < limit)
-			return true;
-		else
-		{
-			if(printError)
-			{
-				snprintf(
-					debugBuff,
-					sizeof(debugBuff),
-					"SAURON: Less-than test failed. '%f' was expected to be less-than '%f'.\r\n",
-					val,
-					limit);
-				Port::DebugPrint(debugBuff);
-			}
-			if(useGpio)
-			{
-				if(gpioMode == SET_HIGH)
-					Port::SetGpio();
-				else if(gpioMode == SET_LOW)
-					Port::ClearGpio();
-				else // gpioMode == TOGGLE
-				{
-					if(gpioState == LOW)
-					{
-						Port::SetGpio();
-						gpioState = HIGH;
-					}
-					else // gpioState == HIGH
-					{
-						Port::ClearGpio();
-						gpioState = LOW;
-					}
-				}				
-			}
-			
-			errorCnt++;
-			
-			return false;
-		}
-	}
-
-	
-
 	//===============================================================================================//
-	//==================================== PRIVATE FUNCTIONS ========================================//
+	//================================== PRIVATE METHOD DEFINITIONS =================================//
 	//===============================================================================================//
 
 	// none

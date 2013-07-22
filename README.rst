@@ -2,14 +2,14 @@
 Sauron
 ======
 
-----------------------------------------------------------------------------------------------------------------------------------
-A portable, microcontroller-geared unit test, online test, and metric (benchmarking) library. It keeps a watchful eye on things...
-----------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+A portable, microcontroller-geared unit test and metric (benchmarking) C++ library. It keeps a watchful eye on things...
+------------------------------------------------------------------------------------------------------------------------
 
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2013/07/19
-- Last Modified: 2013/07/19
-- Version: v1.0.0.0
+- Last Modified: 2013/07/22
+- Version: v2.0.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -23,12 +23,16 @@ A portable, microcontroller-geared unit test, online test, and metric (benchmark
 Description
 ===========
 
-Coming soon...
+Designed to be both powerful and efficient in an embedded (microcontroller) environment.
+
+Supports deferred error message printing (aka not at the point at which the error occurs), preventing disruptive error handling in time critical functions (e.g. control interrupts).
+
+Support for printing FreeRTOS (a popular embedded real-time operating system) scheduler and task information.
 
 External Dependencies
 =====================
 
-Coming soon...
+FreeRTOS (only if FreeRTOS debug/statistic printing is enabled in Sauron-Config.hpp).
 
 Issues
 ======
@@ -51,5 +55,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v2.0.0.0 2013/07/22 Added FreeRTOS reporting functionality (Sauron-FreeRtosMetrics.cpp/hpp). Added portable printf() symbols. Added info to README.
+v1.1.0.0 2013/07/19 Tester functions now template to support any data type. Added mention of C++ to README. Removed unnecessary includes from Sauron-Port.cpp.
 v1.0.0.0 2013/07/19 First version!. Bare-bones files for doing a less-than test with portable code in own file. Makefile included, but not fully functional yet.
 ======== ========== ===================================================================================================

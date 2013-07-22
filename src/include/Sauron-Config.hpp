@@ -1,5 +1,5 @@
 //!
-//! @file 		Sauron-Config.h
+//! @file 		Sauron-Config.hpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com> 
 //! @date 		2013/04/02
 //! @brief 		Configuration file for Sauron.
@@ -57,6 +57,11 @@ namespace Sauron
 	
 	//! @brief		(Tester::gpioState_t) Default state for GPIO.
 	#define Sauron_Config_DEF_GPIO_STATE 			Tester::LOW;
+	
+	//! @brief		(bool) Set to 1 to enable the printing of FreeRTOS metrics
+	//! @note		FreeRTOS must be installed on the system, and configUSE_TRACE_FACILITY and configUSE_STATS_FORMATTING_FUNCTIONS
+	//!				must be defined as 1, otherwise you will compiler errors.
+	#define Sauron_Config_ENABLE_FREERTOS_METRICS	1u
 		
 } // namespace Sauron
 

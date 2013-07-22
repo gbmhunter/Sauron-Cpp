@@ -1,5 +1,5 @@
 //!
-//! @file 		Sauron-Port.h
+//! @file 		Sauron-Port.hpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com> 
 //! @date 		2013/03/19
 //! @brief 		Contains port-specific skeleton functions.
@@ -17,10 +17,12 @@
 #ifndef SAURON_PORT_H
 #define SAURON_PORT_H
 
-extern "C" {
-	// PSoC
-	#include <device.h>
-} // 
+#if(CY_PSOC5)
+	extern "C" {
+		// PSoC
+		#include <device.h>
+	}
+#endif // #if(CY_PSOC5)
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//
@@ -37,16 +39,18 @@ namespace Sauron
 	#define STR(tok) STR_EXPAND(tok)
 	
 	#if(defined __linux__)
-		#define ClidePort_PF_UINT32_T		u
-		#define ClidePort_PF_INT32_T		i
-		#define ClidePort_PF_CHAR_T			c
+		#define SauronPort_PF_UINT32_T		u
+		#define SauronPort_PF_INT32_T		i
+		#define SauronPort_PF_CHAR_T		c
 	#elif(CY_PSOC5)
-		#define ClidePort_PF_UINT32_T		lu
-		#define ClidePort_PF_INT32_T		li
-		#define ClidePort_PF_CHAR_T			li
+		#define SauronPort_PF_UINT32_T		lu
+		#define SauronPort_PF_INT32_T		li
+		#define SauronPort_PF_CHAR_T		li
 	#else
 		#warning No platform defined. Using defaults.
-		#define ClidePort_PF_UINT32_T		u
+		#define SauronPort_PF_UINT32_T		u
+		#define SauronPort_PF_INT32_T		i
+		#define SauronPort_PF_CHAR_T		c
 	#endif
 		
 	//===============================================================================================//

@@ -1,8 +1,8 @@
 //!
-//! @file 		Sauron-Port.cpp
+//! @file 		Sauron-Runner.cpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com> 
 //! @date 		2012/03/19
-//! @brief 		Contains port-specific skeleton functions.
+//! @brief 		Contains run function for Sauron to do regular processing.
 //! @details
 //!				See README.rst in root dir for more info.
 
@@ -14,15 +14,12 @@
 //========================================= INCLUDES ============================================//
 //===============================================================================================//
 
-// System includes
-#include <stdio.h>		// snprintf()
-
 // User includes
-#include "./include/Sauron-Port.h"
+#include "./include/Sauron-Port.hpp"
+#include "./include/Sauron-Runner.hpp"
 
-#if(CY_PSOC5)
-	#include "./Comms/include/UartDebug.h"
-	#include "./Comms/include/UartComms.h"
+#if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
+	#include "./include/Sauron-FreeRtosMetrics.h"
 #endif
 
 //===============================================================================================//
@@ -33,46 +30,21 @@ namespace Sauron
 {
 
 	//===============================================================================================//
-	//===================================== PUBLIC FUNCTIONS ========================================//
+	//================================ PUBLIC METHOD DECLARATIONS ===================================//
 	//===============================================================================================//
 
-	void Port::DebugPrint(const char* msg) 
+	void Runner::Run()
 	{
-		#ifdef __linux__
-			printf("%s", msg);
-		#elif(CY_PSOC5)
-			UartDebugNs::UartDebug::PutString(msg);
-		#else
-			#warning No debug output defined
+		#if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
+			// Print performance metrics
+			FreeRtosMetrics::Run();
 		#endif
 	}
 	
-	void Port::SetGpio()
-	{
-		#ifdef __linux__
-			// Nothing
-		#elif(CY_PSOC5)
-			PinCpDebugLed2_Write(0);
-		#else
-			#warning No GPIO output defined
-		#endif 
-	}
-	
-	void Port::ClearGpio()
-	{
-		#ifdef __linux__
-			// Nothing
-		#elif(CY_PSOC5)
-			PinCpDebugLed2_Write(1);
-		#else
-			#warning No GPIO output defined
-		#endif 
-	}
-
 	//===============================================================================================//
-	//==================================== PRIVATE FUNCTIONS ========================================//
+	//=============================== PRIVATE METHOD DECLARATIONS ===================================//
 	//===============================================================================================//
-
-	// none
 
 } // namespace Sauron
+
+// EOF
