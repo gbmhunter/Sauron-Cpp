@@ -15,11 +15,11 @@
 //===============================================================================================//
 
 // User includes
-#include "./include/Sauron-Config.h"
+#include "./include/Sauron-Config.hpp"
 
 #if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
 
-#include "./include/Sauron-Port.h"
+#include "./include/Sauron-Port.hpp"
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//

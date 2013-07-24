@@ -19,9 +19,9 @@
 #include <stdio.h>		// snprintf()
 
 // User includes
-#include "include/Sauron-Config.h"
-#include "include/Sauron-Tracer.h"
-#include "include/Sauron-Port.h"
+#include "include/Sauron-Config.hpp"
+#include "include/Sauron-Tracer.hpp"
+#include "include/Sauron-Port.hpp"
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//

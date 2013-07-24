@@ -18,7 +18,7 @@
 #include <stdio.h>		// snprintf()
 
 // User includes
-#include "./include/Sauron-Port.h"
+#include "./include/Sauron-Port.hpp"
 
 #if(CY_PSOC5)
 	#include "./Comms/include/UartDebug.h"

@@ -17,15 +17,11 @@
 // System includes
 #include <stdint.h>		// int8_t, int32_t e.t.c
 #include <stdio.h>		// snprintf()
-#include <stdlib.h>		// realloc(), malloc(), free()
-#include <cctype>		// isalnum() 
-#include <getopt.h>		// getopt()	
-#include <string.h>		// strlen()
 
 // User includes
-#include "include/Sauron-Config.h"
-#include "include/Sauron-Tester.h"
-#include "include/Sauron-Port.h"
+#include "include/Sauron-Config.hpp"
+#include "include/Sauron-Tester.hpp"
+#include "include/Sauron-Port.hpp"
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//
