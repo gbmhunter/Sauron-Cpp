@@ -64,7 +64,19 @@ namespace Sauron
 			//===============================================================================================//
 			
 			template<typename var_t>
-			static bool LessThan(double val, double limit);
+			static bool LessThan(var_t val, var_t limit, double voltage, uint32_t testSuiteNum);
+			
+			template<typename var_t>
+			static bool LessThan(var_t val, var_t limit, double voltage);
+			
+			template<typename var_t>
+			static bool LessThan(var_t val, var_t limit);
+		
+			template<typename var_t>
+			static bool LessThanOrEqual(var_t val, var_t limit, double voltage, uint32_t testSuiteNum);
+		
+			template<typename var_t>
+			static bool LessThanOrEqual(var_t val, var_t limit, double voltage);
 		
 			template<typename var_t>
 			static bool LessThanOrEqual(var_t val, var_t limit);
@@ -101,8 +113,9 @@ namespace Sauron
 	//================================= PUBLIC TEMPLATE METHOD DEFINITIONS ==========================//
 	//===============================================================================================//
 	
+	//! @note Base function
 	template<typename var_t>
-	bool Tester::LessThan(var_t val, var_t limit)
+	bool Tester::LessThan(var_t val, var_t limit, double voltage, uint32_t testSuiteNum)
 	{
 		if(val < limit)
 			return true;
@@ -118,26 +131,14 @@ namespace Sauron
 					(double)limit);
 				Port::DebugPrint(debugBuff);
 			}
+			
 			if(useGpio)
-			{
-				if(gpioMode == SET_HIGH)
-					Port::SetGpio();
-				else if(gpioMode == SET_LOW)
-					Port::ClearGpio();
-				else // gpioMode == TOGGLE
-				{
-					if(gpioState == LOW)
-					{
-						Port::SetGpio();
-						gpioState = HIGH;
-					}
-					else // gpioState == HIGH
-					{
-						Port::ClearGpio();
-						gpioState = LOW;
-					}
-				}				
-			}
+				DoGpio();
+			
+			// Only set analog output if useAnalogOut = true and
+			// voltage is positive.
+			if(useAnalogOut && voltage >= 0.0 && testSuiteNum == activeTestSuite)
+				DoAnalog(voltage);
 			
 			errorCnt++;
 			
@@ -145,8 +146,26 @@ namespace Sauron
 		}
 	}
 	
+	//! @brief
+	//! @note 		Simplified function.
 	template<typename var_t>
-	bool Tester::LessThanOrEqual(var_t val, var_t limit)
+	bool Tester::LessThan(var_t val, var_t limit, double voltage)
+	{
+		return LessThan(val, limit, voltage, 1);
+	}
+	
+	//! @brief
+	//! @note 		Simplified function.
+	template<typename var_t>
+	bool Tester::LessThan(var_t val, var_t limit)
+	{
+		return LessThan(val, limit, -1.0, 1);
+	}
+	
+	//! @brief
+	//! @note		Base function.
+	template<typename var_t>
+	bool Tester::LessThanOrEqual(var_t val, var_t limit, double voltage, uint32_t testSuiteNum)
 	{
 		if(val <= limit)
 			return true;
@@ -162,11 +181,33 @@ namespace Sauron
 					(double)limit);
 				Port::DebugPrint(debugBuff);
 			}
+			
 			if(useGpio)
 				DoGpio();
+			
+			// Only set analog output if useAnalogOut = true and
+			// voltage is positive.
+			if(useAnalogOut && voltage >= 0.0 && testSuiteNum == activeTestSuite)
+				DoAnalog(voltage);
 				
 			return false;
 		}
+	}
+	
+	//! @brief
+	//! @note 		Simplified function.
+	template<typename var_t>
+	bool Tester::LessThanOrEqual(var_t val, var_t limit, double voltage)
+	{
+		return LessThanOrEqual(val, limit, voltage, 1);
+	}
+	
+	//! @brief
+	//! @note 		Simplified function.
+	template<typename var_t>
+	bool Tester::LessThanOrEqual(var_t val, var_t limit)
+	{
+		return LessThanOrEqual(val, limit, -1.0, 1);
 	}
 	
 } // namespace Sauron

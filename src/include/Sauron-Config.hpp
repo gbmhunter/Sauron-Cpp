@@ -62,6 +62,9 @@ namespace Sauron
 	//! @note		FreeRTOS must be installed on the system, and configUSE_TRACE_FACILITY and configUSE_STATS_FORMATTING_FUNCTIONS
 	//!				must be defined as 1, otherwise you will compiler errors.
 	#define Sauron_Config_ENABLE_FREERTOS_METRICS	1u
+	
+	//! @brief		(bool) Default state for function/task tracing.
+	#define Sauron_Config_DEF_ENABLE_TRACE			1u
 		
 } // namespace Sauron
 

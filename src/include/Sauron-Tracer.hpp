@@ -1,8 +1,8 @@
 //!
-//! @file 		Sauron-FreeRtosMetrics.hpp
+//! @file 		Sauron-Tracer.hpp
 //! @author 	Geoffrey Hunter <gbmhunter@gmail.com> 
-//! @date 		2013/03/19
-//! @brief 		Calls FreeRTOS API that returns performance metrics about the operating system.
+//! @date 		2013/07/22
+//! @brief 		Function/task tracer module.
 //! @details
 //!				See README.rst in root dir for more info.
 
@@ -10,15 +10,12 @@
 	#error Please build with C++ compiler
 #endif
 
-// Inclusion of FreeRtosMetrics
-#if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
-
 //===============================================================================================//
 //======================================== HEADER GUARD =========================================//
 //===============================================================================================//
 
-#ifndef SAURON_FREERTOS_METRICS_H
-#define SAURON_FREERTOS_METRICS_H
+#ifndef SAURON_TRACER_H
+#define SAURON_TRACER_H
 
 //===============================================================================================//
 //========================================== INCLUDES ===========================================//
@@ -34,37 +31,34 @@
 
 namespace Sauron
 {
-	//===============================================================================================//
-	//============================================= CLASS ===========================================//
-	//===============================================================================================//
-	class FreeRtosMetrics
+	class Tracer
 	{	
 		
 		public:
 		
-			
+		
 			
 			//===============================================================================================//
 			//==================================== CONSTRUCTORS/DESTRUCTOR ==================================//
 			//===============================================================================================//
 			
 		
-			
 			//===============================================================================================//
 			//=================================== PUBLIC METHOD DECLARATIONS ================================//
 			//===============================================================================================//
 			
-			//! @brief		Prints FreeRTOS performance metrics.
-			static void Run();
+			static void Trace(double voltagemV);
 			
 			//===============================================================================================//
 			//======================================= PUBLIC VARIABLES ======================================//
 			//===============================================================================================//
+		
+			static bool enableTrace;
 			
 		private:
 		
-			static char taskMetricsStringBuff[250];
-			static char freeHeapSpaceString[150];
+		
+			// none
 	};
 
 	//===============================================================================================//
@@ -75,8 +69,6 @@ namespace Sauron
 	
 } // namespace Sauron
 
-#endif // #ifndef SAURON_FREERTOS_METRICS_H
-
-#endif // #if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
+#endif	// #ifndef SAURON_TRACER_H
 
 // EOF

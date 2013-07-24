@@ -8,8 +8,8 @@ A portable, microcontroller-geared unit test and metric (benchmarking) C++ libra
 
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2013/07/19
-- Last Modified: 2013/07/22
-- Version: v2.0.0.0
+- Last Modified: 2013/07/25
+- Version: v3.0.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -55,6 +55,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v3.0.0.0 2013/07/25 Added trace functionality (Sauron-Tracer.hpp/cpp). Removed magic numbers and replaced with sizeof(). Now prints byte unit and total allocated bytes when showing FreeRTOS debug info. Added analog out functionality.
 v2.0.0.0 2013/07/22 Added FreeRTOS reporting functionality (Sauron-FreeRtosMetrics.cpp/hpp). Added portable printf() symbols. Added info to README.
 v1.1.0.0 2013/07/19 Tester functions now template to support any data type. Added mention of C++ to README. Removed unnecessary includes from Sauron-Port.cpp.
 v1.0.0.0 2013/07/19 First version!. Bare-bones files for doing a less-than test with portable code in own file. Makefile included, but not fully functional yet.

@@ -69,6 +69,17 @@ namespace Sauron
 		#endif 
 	}
 
+	void Port::SetAnalogOut(double voltage)
+	{
+		#ifdef __linux__
+			// Nothing
+		#elif(CY_PSOC5)
+			DebugVdacNs::DebugVdac::SetOutput(voltage);
+		#else
+			#warning No analogue output defined
+		#endif 
+	}
+	
 	//===============================================================================================//
 	//==================================== PRIVATE FUNCTIONS ========================================//
 	//===============================================================================================//

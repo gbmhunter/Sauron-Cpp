@@ -28,8 +28,8 @@
 namespace Sauron
 {
 	
-	char FreeRtosMetrics::taskMetricsStringBuff[200] = {0};
-	char FreeRtosMetrics::freeHeapSpaceString[100] = {0};
+	char FreeRtosMetrics::taskMetricsStringBuff[250] = {0};
+	char FreeRtosMetrics::freeHeapSpaceString[150] = {0};
 
 	//===============================================================================================//
 	//================================ PUBLIC METHOD DECLARATIONS ===================================//
@@ -41,16 +41,17 @@ namespace Sauron
 		#if(Sauron_Config_DEBUG_PRINT_GENERAL == 1)
 			Port::DebugPrint("SAURON: Gathering/printing FreeRTOS metrics...\r\n");
 		#endif
-
+		
 		// Get task information
 		vTaskList((signed char*)taskMetricsStringBuff);
 		
 		snprintf(
 			freeHeapSpaceString,
-			50,
-			"\r\nTick = %u\r\nFree Heap Space = %u\r\n\r\n",
-			(uint32) xTaskGetTickCount(),
-			(uint32) xPortGetFreeHeapSize());
+			sizeof(freeHeapSpaceString),
+			"\r\nTick = %" STR(SauronPort_PF_UINT32_T) "\r\nFree Heap Space = %" STR(SauronPort_PF_UINT32_T) "bytes of %" STR(SauronPort_PF_UINT32_T) " allocated.\r\n\r\n",
+			(uint32_t)xTaskGetTickCount(),
+			(uint32_t)xPortGetFreeHeapSize(),
+			(uint32_t)configTOTAL_HEAP_SIZE);
 		
 		strlcat(taskMetricsStringBuff, freeHeapSpaceString, sizeof(taskMetricsStringBuff));
 		// Print task information

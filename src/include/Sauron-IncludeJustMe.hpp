@@ -19,6 +19,7 @@
 
 #include "Sauron-Tester.hpp"
 #include "Sauron-Runner.hpp"
+#include "Sauron-Tracer.hpp"
 
 #endif	// SAURON_INCLUDE_JUST_ME_H
 

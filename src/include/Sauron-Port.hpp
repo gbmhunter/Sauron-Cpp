@@ -91,6 +91,10 @@ namespace Sauron
 			static void SetGpio();
 			
 			static void ClearGpio();
+			
+			//! @brief		Sets an analogue output to a certain voltage.
+			//! @note		Port-specific.
+			static void SetAnalogOut(double voltage);
 	};
 
 } // namespace SAURON
