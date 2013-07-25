@@ -17,12 +17,12 @@
 #ifndef SAURON_PORT_H
 #define SAURON_PORT_H
 
-#if(CY_PSOC5)
+#if(PSOC)
 	extern "C" {
 		// PSoC
 		#include <device.h>
 	}
-#endif // #if(CY_PSOC5)
+#endif // #if(PSOC)
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//

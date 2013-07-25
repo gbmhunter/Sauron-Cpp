@@ -19,7 +19,7 @@
 #include "./include/Sauron-Runner.hpp"
 
 #if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
-	#include "./include/Sauron-FreeRtosMetrics.h"
+	#include "./include/Sauron-FreeRtosMetrics.hpp"
 #endif
 
 //===============================================================================================//

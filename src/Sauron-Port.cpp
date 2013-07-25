@@ -23,6 +23,7 @@
 #if(CY_PSOC5)
 	#include "./Comms/include/UartDebug.h"
 	#include "./Comms/include/UartComms.h"
+	#include "./DebugVdac/include/DebugVdacNs-DebugVdac.h"
 #endif
 
 //===============================================================================================//
@@ -50,7 +51,7 @@ namespace Sauron
 	void Port::SetGpio()
 	{
 		#ifdef __linux__
-			// Nothing
+			#warning GPIO unsupported in Linux.
 		#elif(CY_PSOC5)
 			PinCpDebugLed2_Write(0);
 		#else
@@ -61,7 +62,7 @@ namespace Sauron
 	void Port::ClearGpio()
 	{
 		#ifdef __linux__
-			// Nothing
+			#warning GPIO unsupported in Linux.
 		#elif(CY_PSOC5)
 			PinCpDebugLed2_Write(1);
 		#else
@@ -72,7 +73,7 @@ namespace Sauron
 	void Port::SetAnalogOut(double voltage)
 	{
 		#ifdef __linux__
-			// Nothing
+			#warning Analog output unsupported in Linux.
 		#elif(CY_PSOC5)
 			DebugVdacNs::DebugVdac::SetOutput(voltage);
 		#else

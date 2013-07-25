@@ -56,7 +56,7 @@ namespace Sauron
 	#define Sauron_Config_DEF_GPIO_MODE 			Tester::TOGGLE;
 	
 	//! @brief		(Tester::gpioState_t) Default state for GPIO.
-	#define Sauron_Config_DEF_GPIO_STATE 			Tester::LOW;
+	#define Sauron_Config_DEF_GPIO_STATE 			Tester::HIGH;
 	
 	//! @brief		(bool) Set to 1 to enable the printing of FreeRTOS metrics
 	//! @note		FreeRTOS must be installed on the system, and configUSE_TRACE_FACILITY and configUSE_STATS_FORMATTING_FUNCTIONS
@@ -65,6 +65,11 @@ namespace Sauron
 	
 	//! @brief		(bool) Default state for function/task tracing.
 	#define Sauron_Config_DEF_ENABLE_TRACE			1u
+	
+	//! @brief		(bool) Default value for whether or not to use the analog output.
+	#define Sauron_Config_DEF_USE_ANALOG_OUT		0u
+	
+	#define Sauron_Config_DEF_ACTIVE_TEST_SUITE		1u
 		
 } // namespace Sauron
 

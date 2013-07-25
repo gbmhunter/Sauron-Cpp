@@ -14,12 +14,19 @@
 //========================================= INCLUDES ============================================//
 //===============================================================================================//
 
+// System
+#include <stdio.h>
+
 // User includes
 #include "./include/Sauron-Config.hpp"
 
 #if(Sauron_Config_ENABLE_FREERTOS_METRICS == 1)
 
 #include "./include/Sauron-Port.hpp"
+#include "./include/Sauron-FreeRtosMetrics.hpp"
+
+#include "FreeRTOS/Source/include/FreeRTOS.h"
+#include "FreeRTOS/Source/include/task.h"
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//

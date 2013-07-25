@@ -24,6 +24,7 @@
 #include <stdint.h>
 
 #include "Sauron-Config.hpp"
+#include "Sauron-Port.hpp"
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//
@@ -102,11 +103,26 @@ namespace Sauron
 			
 			static gpioState_t gpioState;
 			
+			//! @brief		Set to true if you want to use the analog output.
+			static bool useAnalogOut;
+			
+			//! @brief		Stores the number of the currently active test suite.
+			static uint32_t activeTestSuite;
+			
 		private:
 		
 			static char debugBuff[Sauron_Config_DEBUG_BUFF_SIZE];
 		
-			// none
+			static void DoGpio();
+			
+			static void DoAnalog(double voltagemV);
+			
+			//===============================================================================================//
+			//======================================= PRIVATE VARIABLES =====================================//
+			//===============================================================================================//
+			
+			
+			
 	};
 
 	//===============================================================================================//
