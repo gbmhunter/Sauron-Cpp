@@ -36,8 +36,8 @@ namespace Sauron
 
 	//=============== DEBUG SWITCHES ============//
 
-	#define Sauron_Config_DEBUG_PRINT_GENERAL		1u				//!< Print general debug msgs
-	#define Sauron_Config_DEBUG_PRINT_VERBOSE		1u				//!< Print verbose debug msgs
+	#define Sauron_Config_DEBUG_PRINT_GENERAL		0u				//!< Print general debug msgs
+	#define Sauron_Config_DEBUG_PRINT_VERBOSE		0u				//!< Print verbose debug msgs
 	#define Sauron_Config_DEBUG_PRINT_ERROR			1u				//!< Print error debug msgs
 
 	#define Sauron_Config_DEBUG_PRINT_ANY	(Sauron_Config_DEBUG_PRINT_GENERAL | Sauron_Config_DEBUG_PRINT_VERBOSE | Sauron_Config_DEBUG_PRINT_ERROR)

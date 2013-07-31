@@ -65,6 +65,9 @@ namespace Sauron
 		
 			static char taskMetricsStringBuff[250];
 			static char freeHeapSpaceString[150];
+			
+			//! @brief		Gets the FreeRTOS run time statistics.
+			static void GetRtosStats();
 	};
 
 	//===============================================================================================//
