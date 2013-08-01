@@ -31,15 +31,21 @@ namespace Sauron
 {
 
 	bool Tracer::enableTrace = Sauron_Config_DEF_ENABLE_TRACE;
-
+	uint32_t Tracer::activeTraceSuite = 0;
+	
 	//===============================================================================================//
 	//================================== PUBLIC METHOD DEFINITIONS ==================================//
 	//===============================================================================================//
 
-	void Tracer::Trace(double voltagemV)
+	void Tracer::Trace(double voltagemV, uint32_t traceSuiteNum)
 	{
 		if(enableTrace)
-			Port::SetAnalogOut(voltagemV);
+		{
+			if(traceSuiteNum == activeTraceSuite)
+			{
+				Port::SetAnalogOut(voltagemV);
+			}
+		}
 	}
 	
 	//===============================================================================================//

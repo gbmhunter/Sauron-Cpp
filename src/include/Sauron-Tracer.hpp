@@ -47,13 +47,22 @@ namespace Sauron
 			//=================================== PUBLIC METHOD DECLARATIONS ================================//
 			//===============================================================================================//
 			
-			static void Trace(double voltagemV);
+			//! @brief		Call to output a trace at the current point in code (as long as the suite number
+			//!				is currently active).
+			//! @param		voltagemV	The voltage (in mV) that you want to output.
+			//! @param		traceSuiteNum	The suite number this trace belongs to. If the assigned suite number
+			//!								is not currently active, no trace will be outputted.
+			static void Trace(double voltagemV, uint32_t traceSuiteNum);
 			
 			//===============================================================================================//
 			//======================================= PUBLIC VARIABLES ======================================//
 			//===============================================================================================//
 		
+			//! @brief		Set to 1 to enable trace output. Set to 0 to disable trace output.
 			static bool enableTrace;
+			
+			//! @brief		The active trace suite number.
+			static uint32_t activeTraceSuite;
 			
 		private:
 		

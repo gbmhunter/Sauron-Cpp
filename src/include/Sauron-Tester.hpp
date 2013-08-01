@@ -22,6 +22,7 @@
 //===============================================================================================//
 
 #include <stdint.h>
+#include <stdio.h>
 
 #include "Sauron-Config.hpp"
 #include "Sauron-Port.hpp"

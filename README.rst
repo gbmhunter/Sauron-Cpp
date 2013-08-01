@@ -9,7 +9,7 @@ A portable, microcontroller-geared unit test and metric (benchmarking) C++ libra
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2013/07/19
 - Last Modified: 2013/08/01
-- Version: v3.0.4.0
+- Version: v3.1.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -55,6 +55,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v3.1.0.0 2013/08/01 Added trace suite number functionality to Tracer::Trace(). Included stdio.h in Sauron::Tester.hpp to fix snprintf() undefined bug.
 v3.0.4.0 2013/08/01 Modified 'Free Heap Space' debug message so it made more sense. FreeRTOS metrics now uses the new uxTaskGetSystemState() function.
 v3.0.3.0 2013/07/25 Completed digital GPIO/analog functionality for Sauron-Tester class. Changed default state for GPIO. Fixed some includes.
 v3.0.2.0 2013/07/25 Sauron-Port.hpp now looks for PSOC (add via -D PSOC compiler flag) to be defined to include device.h. Fixed some includes.
